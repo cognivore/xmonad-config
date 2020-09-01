@@ -50,7 +50,7 @@ myXmobarrc = "~/.xmonad/xmobar-single.hs"
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
-myWorkspaces = ["1:code","2:web","3:im","4:media","5:fs"] ++ map show [6..8] ++ ["9:remote"]
+myWorkspaces = ["1:code","2:web","3:im","4:media","5:fs", "6:issues"] ++ map show [7..8] ++ ["9:remote"]
 
 
 ------------------------------------------------------------------------
