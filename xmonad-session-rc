@@ -13,6 +13,7 @@ xrdb ~/.Xresources &
 xset r rate 190 35 &
 xinput set-prop "Razer Razer Abyssus" 314 -1 &
 setxkbmap "lv,ru" option grp:caps_toggle &
+unclutter &
 
 # Start a window compositor. This ensures Google Chrome paints correctly.
 xcompmgr -n &

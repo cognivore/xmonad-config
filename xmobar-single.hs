@@ -30,7 +30,8 @@ Config {
         Run Memory ["-t","Mem: <usedratio>%","-H","8192","-L","4096","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
         Run Swap ["-t","Swap: <usedratio>%","-H","1024","-L","512","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
         Run Network "wlp3s0" ["-t","Net: <rx>, <tx>","-H","200","-L","10","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
-        Run Date "%a %b %_d %T" "date" 10,
+        Run Com "date" ["+\"%a %b %_d %H:%M\""] "mydate" 590,
+        --Run Date "%a %b %_d %T" "date" 10,
         Run Com "getMasterVolume" [] "volumelevel" 10,
         Run Battery        [ "--template" , "Batt: <acstatus>"
                              , "--Low"      , "10"        -- units: %
@@ -46,10 +47,10 @@ Config {
                                        , "-O"	, "<fc=#dAA520>Charging</fc>"
                                        -- charged status
                                        , "-i"	, "<fc=#006000>Charged</fc>"
-                             ] 50,
+                             ] 60,
         Run StdinReader
     ],
     sepChar = "%",
     alignSep = "}{",
-    template = "%StdinReader% }{ %multicpu%   %memory%   %swap%  %wlp3s0%   Vol: <fc=#b2b2ff>%volumelevel%</fc>  %battery%   <fc=#FFFFCC>%date%</fc>"
+    template = "%StdinReader% }{ %multicpu%   %memory%   %swap%  %wlp3s0%   Vol: <fc=#b2b2ff>%volumelevel%</fc>  %battery%   <fc=#FFFFCC>%mydate%</fc>"
 }
