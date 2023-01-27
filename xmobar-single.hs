@@ -11,7 +11,7 @@ Config {
     -- Position xmobar along the top, with a stalonetray in the top right.
     -- Add right padding to xmobar to ensure stalonetray and xmobar don't
     -- overlap. stalonetrayrc-single is configured for 12 icons, each 23px
-    -- wide. 
+    -- wide.
     -- right_padding = num_icons * icon_size
     -- right_padding = 12 * 23 = 276
     -- Example: position = TopP 0 276
@@ -30,7 +30,7 @@ Config {
         Run Memory ["-t","Mem: <usedratio>%","-H","8192","-L","4096","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
         Run Swap ["-t","Swap: <usedratio>%","-H","1024","-L","512","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
         Run Network "wlp3s0" ["-t","Net: <rx>, <tx>","-H","200","-L","10","-h","#FFB6B0","-l","#CEFFAC","-n","#FFFFCC"] 10,
-        Run Com "date" ["+\"%a %b %_d %H:%M\""] "mydate" 590,
+        Run Com "date" ["+\"%a %b %_d %H:%M\""] "mydate" 10,
         --Run Date "%a %b %_d %T" "date" 10,
         Run Com "getMasterVolume" [] "volumelevel" 10,
         Run Battery        [ "--template" , "Batt: <acstatus>"

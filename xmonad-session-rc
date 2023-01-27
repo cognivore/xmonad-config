@@ -10,7 +10,7 @@ PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 # Configure X
 xsetroot -cursor_name left_ptr &
 xrdb ~/.Xresources &
-xset r rate 190 35 &
+xset r rate 170 30 &
 xinput set-prop "Razer Razer Abyssus" 314 -1 &
 setxkbmap "lv,ru" option grp:caps_toggle &
 unclutter &

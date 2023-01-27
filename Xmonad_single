@@ -1,0 +1,2 @@
+cp ~/.xmonad/xmonad-single.hs ~/.xmonad/xmonad.hs
+xmonad --recompile && xmonad --restart

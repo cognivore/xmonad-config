@@ -2,6 +2,8 @@
 -- Author: Vic Fryzel
 -- https://github.com/vicfryzel/xmonad-config
 
+--import XMonad.Util.CustomKeyS
+
 import qualified Data.Map as M
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit
@@ -12,6 +14,11 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Fullscreen
+import XMonad.Layout.IndependentScreens
+  ( onCurrentScreen,
+    withScreens,
+    workspaces',
+  )
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
@@ -42,14 +49,14 @@ myScreenshot = "screenshot"
 myLauncher = "$(yeganesh -x -- -fn 'monospace-8' -nb '#000000' -nf '#FFFFFF' -sb '#7C7C7C' -sf '#CEFFAC')"
 
 -- Location of your xmobar.hs / xmobarrc
-myXmobarrc = "~/.xmonad/xmobar-single.hs"
+myXmobarrc = "~/.xmonad/xmobar-dual-mine.hs"
 
 ------------------------------------------------------------------------
 -- Workspaces
 -- The default number of workspaces (virtual screens) and their names.
 --
 myWorkspaces =
-  ["1:code", "2:web", "3:im", "4:media", "5:fs", "6:issues", "7:correspondence", "8:toolchain", "9:remote"]
+  withScreens 2 ["1:code", "2:web", "3:im", "4:media", "5:fs", "6:issues", "7:correspondence", "8:toolchain", "9:remote"]
 
 ------------------------------------------------------------------------
 -- Window rules
@@ -71,8 +78,9 @@ myManageHook =
       className =? "Gimp" --> doFloat,
       resource =? "gpicview" --> doFloat,
       className =? "MPlayer" --> doFloat,
+      className =? "VirtualBox" --> doShift "4:vm",
       stringProperty "_NET_WM_NAME" =? "Emulator" --> doFloat,
-      className =? "VirtualBox" --> doShift "8:toolchain",
+      className =? "Xchat" --> doShift "5:media",
       isFullscreen --> (doF W.focusDown <+> doFullFloat)
     ]
 
@@ -291,8 +299,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) =
       ++
       -- mod-[1..9], Switch to workspace N
       -- mod-shift-[1..9], Move client to workspace N
-      [ ((m .|. modMask, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9],
+      [ ((m .|. modMask, k), windows $ onCurrentScreen f i)
+        | (i, k) <- zip (workspaces' conf) [xK_1 .. xK_9],
           (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
       ]
       ++

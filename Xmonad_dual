@@ -1,0 +1,2 @@
+cp ~/.xmonad/xmonad-dual-mine-1.hs ~/.xmonad/xmonad.hs
+xmonad --recompile && xmonad --restart
